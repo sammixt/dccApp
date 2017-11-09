@@ -1,0 +1,122 @@
+﻿@model com.dcc.Entities.UsersAccount
+
+@{
+    Layout = null;
+    ViewBag.Title = "Log in";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCC</title>
+    <link rel="shortcut icon" href="~/favicon.ico" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="body-with-bg">
+    <div class="row" style="margin-top:-45px;padding-left:20px">
+        <div class="holder" align="left">
+            <div class="imgHolder">
+                <img src="~/Content/Images/logo-main.png" />
+            </div>
+            <div class="textHolder">
+                <span class="fam">DCC Management Application</span>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="opacity:0.8">
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4" style="margin-top:5%">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading text-left" style="background:#00adef">
+                        <h2 class="panel-title"><strong>DCC Members Management Application</strong></h2>
+                    </div>
+                    <div class="panel-body col-md-12">
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "loginForm", role = "form", @class = "col-md-12" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <p class="text-center">Select Department to Login</p>
+    <div class="form-group ">
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Enter your username." })
+        @Html.ValidationMessageFor(m => m.UserName)
+    </div>
+                            <div class="form-group">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Enter your password." })
+                                @Html.ValidationMessageFor(m => m.Password)
+                            </div>
+                            <div class="form-group">
+                                <select name="DeptId" class="form-control">
+                                    @foreach (var dept in ViewBag.Dept)
+                                    {
+                                        <option value="@dept.DeptId">@dept.DeptName</option>
+                                    }
+                                </select>
+                            </div>      
+                            <div class="form-group">
+                                <input type="submit" value="Log in" class="btn btn-lg btn-primary btn-block" onclick="Disable(this)" />
+                            </div>
+
+                            if (ViewBag.ErrorMessage != null)
+                            {
+                                <div class="alert alert-danger">
+                                    <p><b>Login failed!</b> @ViewBag.ErrorMessage</p>
+                                </div>
+                            }
+                        }
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        function Disable(btn) {
+            var $form = $("#loginForm");
+
+            if ($form.valid()) {
+                setTimeout(function () {
+                    $(btn).attr('disabled', 'disabled');
+                    $(btn).val("Please wait...");
+                }, 100);
+            }
+        }
+    </script>
+    <style>
+        .fam {
+            margin-left: 1%;
+            color: #00adef;
+            text-decoration: none;
+            font-size: 4em;
+            font-family: Verdana;
+            font-style: italic;
+            line-height: 60px;
+        }
+
+        .imgHolder {
+            width: 157px;
+            float: left;
+        }
+
+        .holder > .imgHolder > .textHolder {
+            border: solid 2px green;
+            display: inline-block;
+        }
+
+        .textHolder {
+            width: 100%;
+            float: left;
+            margin-right: 0;
+        }
+    </style>
+</body>
+</html>
+
+

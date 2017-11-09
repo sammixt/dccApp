@@ -1,0 +1,4 @@
+DEBUG 2017-10-13 15:30:28,717 - An error occurred while updating the entries. See the inner exception for details.+ -------------------------------- +    at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at com.dcc.BLL.FinanceBLL.InsertDuesPayment(Payment model) in c:\Users\scezeala\Documents\Visual Studio 2013\Projects\SampleApps\com.dcc\com.dcc\BLL\FinanceBLL.cs:line 166

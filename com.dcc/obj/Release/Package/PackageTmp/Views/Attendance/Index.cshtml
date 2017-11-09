@@ -1,0 +1,160 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+           Attendance
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Attendance</li>
+        </ol>
+    </section>
+   
+        <section class="content">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+               
+                <!-- ./col -->
+                <div class="col-lg-6 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <h3><br /></h3>
+
+                            <p>Take Attendance</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-ios-clock-outline"></i>
+                        </div>
+                        <a href="#" data-toggle="modal" data-target="#modal-warning" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-6 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <h3><br /></h3>
+
+                            <p>Attendance Report</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-ios-paper-outline"></i>
+                        </div>
+                        <a href="#" data-toggle="modal" data-target="#modal-danger" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+            <!-- /.row -->
+        </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<!-- /. Take attendance modal-->
+<div class="modal modal-warning fade" id="modal-warning">
+    <div class="modal-dialog">
+        <form class="modal-content" method="post" action="@Url.Action("GetMembers","Attendance")">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Select group</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Select Group</label>
+                        <div class="col-md-9">
+                            <select class="form-control" name="Group">
+                                <option value="ALL">ALL</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>
+                        </div>
+                       
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+                            <p class="form-control-static text-info">Note the Date Defaults to today's date.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-outline" value="Submit" />
+                </div>
+            </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<div class="modal modal-danger fade" id="modal-danger">
+    <div class="modal-dialog">
+        <form class="modal-content" action="@Url.Action("GetAttendanceRecord","Attendance")" method="get">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">View Attendance Report</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Select Date</label>
+                        <div class="col-md-9">
+                            <input onkeypress="disable(event)" data-date-format="yyyy/mm/dd" type="text" required data-provide="datepicker" id="datePicker" class="form-control" name="AttendanceDate" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Select Group</label>
+                        <div class="col-md-9">
+                            <select class="form-control">
+                                <option value="ALL">ALL</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-outline" value="Submit" />
+            </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+@section scripts {
+   
+    <script>
+    
+       function disable(e) {
+        e.preventDefault();
+        }
+    </script>
+}
+

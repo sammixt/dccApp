@@ -1,0 +1,50 @@
+﻿@model com.dcc.Entities.Payment
+
+<div class="container">
+    <div class="col-md-12">
+        <h3 class="text-info text-bold">Payment History</h3>
+        @using (Html.BeginForm("SearchPaymentRecord", "Finance", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "InsertDuesPayment", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group col-md-6 col-md-offset-1">
+                    <label class="control-label">Payment History</label>
+
+                    <select name="DuesId" id="DuesId" onchange="getAmount()" class="form-control">
+                        <option value="0"></option>
+                        @foreach (var item in ViewBag.DuesList)
+                        {
+                            <option value="@item.DuesId">@item.DuesName</option>
+                        }
+                    </select>
+
+                    @Html.HiddenFor(model => model.MemberId, new { @Value = ViewBag.MemberId })
+
+                </div>
+                
+                <div class="clearfix"></div>
+               
+                <div class="form-group col-md-6 col-md-offset-1">
+                    <label class="control-label">Start Date</label>
+                    <input name="StartDate" onkeypress="disableText(event)" data-date-format="yyyy/mm/dd" type="text" required data-provide="datepicker" id="datePicker" class="form-control" />
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="form-group col-md-6 col-md-offset-1">
+                    <label class="control-label">Start Date</label>
+                    <input name="EndDate" onkeypress="disableText(event)" data-date-format="yyyy/mm/dd" type="text" required data-provide="datepicker" id="datePicker" class="form-control" />
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Search" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

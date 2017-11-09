@@ -1,0 +1,67 @@
+﻿@model com.dcc.Entities.Unit
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Unit Details
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Unit Details</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <a href="@Url.Action("Index","Units")" class="btn btn-sm btn-success">Units List</a>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="col-md-8 col-md-offset-2">
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Unit Name</label>
+                                <div class="col-md-10">
+                                    @Html.DisplayFor(model => model.UnitName)
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Unit Function</label>
+                                <div class="col-md-10">
+                                    @Html.DisplayFor(model => model.UnitFunction)
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Unit Department</label>
+                                <div class="col-md-10">
+                                    @Html.DisplayFor(model => model.Department.DeptName)
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Unit Short Code</label>
+                                <div class="col-md-10">
+                                    @Html.DisplayFor(model => model.UnitShortCode)
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

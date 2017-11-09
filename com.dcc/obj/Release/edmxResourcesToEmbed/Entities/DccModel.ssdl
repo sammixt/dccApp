@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DCCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Attendance">
+    <Key>
+      <PropertyRef Name="AttendanceId" />
+    </Key>
+    <Property Name="AttendanceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateOfDate" Type="date" />
+    <Property Name="WorkerId" Type="int" />
+    <Property Name="DeptGroup" Type="varchar" MaxLength="10" />
+    <Property Name="PresentAbsent" Type="bit" />
+  </EntityType>
+  <EntityType Name="Believers">
+    <Key>
+      <PropertyRef Name="MemberId" />
+    </Key>
+    <Property Name="MemberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="150" />
+    <Property Name="LastName" Type="varchar" MaxLength="150" />
+    <Property Name="Sex" Type="varchar" MaxLength="10" />
+    <Property Name="DateOfBirth" Type="date" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
+    <Property Name="HomeAddressOne" Type="varchar" MaxLength="255" />
+    <Property Name="HomeAddressTwo" Type="varchar" MaxLength="255" />
+    <Property Name="City" Type="varchar" MaxLength="100" />
+    <Property Name="StateName" Type="varchar" MaxLength="150" />
+    <Property Name="Country" Type="varchar" MaxLength="150" />
+    <Property Name="MaritalStatus" Type="varchar" MaxLength="50" />
+    <Property Name="WeddingAnniversary" Type="date" />
+    <Property Name="FacebookName" Type="varchar" MaxLength="150" />
+    <Property Name="InstagramHandle" Type="varchar" MaxLength="150" />
+    <Property Name="TwitterHandle" Type="varchar" MaxLength="150" />
+    <Property Name="AltPhoneNumber" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DeptId" />
+    </Key>
+    <Property Name="DeptId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeptName" Type="varchar" MaxLength="150" />
+    <Property Name="DeptDesc" Type="varchar" MaxLength="255" />
+    <Property Name="Vision" Type="varchar(max)" />
+    <Property Name="ShortCode" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Due">
+    <Key>
+      <PropertyRef Name="DuesId" />
+    </Key>
+    <Property Name="DuesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreationDate" Type="date" Nullable="false" />
+    <Property Name="DuesName" Type="varchar" MaxLength="255" />
+    <Property Name="DuesDesc" Type="varchar" MaxLength="500" />
+    <Property Name="DuesType" Type="varchar" MaxLength="100" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="DeptId" Type="int" />
+  </EntityType>
+  <EntityType Name="Members">
+    <Key>
+      <PropertyRef Name="MemberId" />
+    </Key>
+    <Property Name="MemberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BelieverId" Type="int" />
+    <Property Name="DeptId" Type="int" />
+    <Property Name="UnitId" Type="int" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+    <Property Name="Groups" Type="varchar" MaxLength="50" />
+    <Property Name="ProbationStatus" Type="varchar" MaxLength="50" />
+    <Property Name="Post" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Months">
+    <Key>
+      <PropertyRef Name="MonthId" />
+    </Key>
+    <Property Name="MonthId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Month" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Payments">
+    <Key>
+      <PropertyRef Name="PaymentId" />
+    </Key>
+    <Property Name="PaymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DuesId" Type="int" />
+    <Property Name="MemberId" Type="int" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Month" Type="int" />
+    <Property Name="Year" Type="varchar" MaxLength="5" />
+    <Property Name="PaymentDate" Type="date" />
+    <Property Name="EntryDate" Type="date" />
+    <Property Name="ExpenseBy" Type="varchar" MaxLength="255" />
+    <Property Name="Narration" Type="varchar" MaxLength="255" />
+    <Property Name="AuthorizedBy" Type="varchar" MaxLength="255" />
+    <Property Name="TransactionType" Type="varchar" MaxLength="50" />
+    <Property Name="DeptId" Type="int" />
+    <Property Name="PaymentSatus" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Posts">
+    <Key>
+      <PropertyRef Name="PostId" />
+    </Key>
+    <Property Name="PostId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PostName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="Role_Name" Type="varchar" MaxLength="100" />
+    <Property Name="RoleType" Type="int" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="UnitId" />
+    </Key>
+    <Property Name="UnitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeptID" Type="int" />
+    <Property Name="UnitName" Type="varchar" MaxLength="150" />
+    <Property Name="UnitFunction" Type="varchar" MaxLength="200" />
+    <Property Name="UnitShortCode" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UsersAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="200" />
+    <Property Name="BelieverId" Type="int" />
+    <Property Name="DeptId" Type="int" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="CreationDate" Type="date" />
+  </EntityType>
+  <EntityType Name="Wallet">
+    <Key>
+      <PropertyRef Name="WalletId" />
+    </Key>
+    <Property Name="WalletId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberId" Type="int" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="TransactionType" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="255" />
+    <Property Name="TransactionDate" Type="date" />
+    <Property Name="DeptId" Type="int" />
+  </EntityType>
+  <Association Name="FK_Attendance_BelieverLink">
+    <End Role="Believers" Type="Self.Believers" Multiplicity="0..1" />
+    <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Believers">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="Attendance">
+        <PropertyRef Name="WorkerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Members_Believers">
+    <End Role="Believers" Type="Self.Believers" Multiplicity="0..1" />
+    <End Role="Members" Type="Self.Members" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Believers">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="Members">
+        <PropertyRef Name="BelieverId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Members_Dept">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Members" Type="Self.Members" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DeptId" />
+      </Principal>
+      <Dependent Role="Members">
+        <PropertyRef Name="DeptId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Members_Post">
+    <End Role="Posts" Type="Self.Posts" Multiplicity="0..1" />
+    <End Role="Members" Type="Self.Members" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Posts">
+        <PropertyRef Name="PostId" />
+      </Principal>
+      <Dependent Role="Members">
+        <PropertyRef Name="Post" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Members_Units">
+    <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
+    <End Role="Members" Type="Self.Members" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="UnitId" />
+      </Principal>
+      <Dependent Role="Members">
+        <PropertyRef Name="UnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payments_Believers">
+    <End Role="Believers" Type="Self.Believers" Multiplicity="0..1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Believers">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payments_Due">
+    <End Role="Due" Type="Self.Due" Multiplicity="0..1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Due">
+        <PropertyRef Name="DuesId" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="DuesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payments_Months">
+    <End Role="Months" Type="Self.Months" Multiplicity="0..1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Months">
+        <PropertyRef Name="MonthId" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="Month" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Unit_Unit">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DeptId" />
+      </Principal>
+      <Dependent Role="Unit">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersAccount_BelieversLink">
+    <End Role="Believers" Type="Self.Believers" Multiplicity="0..1" />
+    <End Role="UsersAccount" Type="Self.UsersAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Believers">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="UsersAccount">
+        <PropertyRef Name="BelieverId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersAccount_DeptLink">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="UsersAccount" Type="Self.UsersAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DeptId" />
+      </Principal>
+      <Dependent Role="UsersAccount">
+        <PropertyRef Name="DeptId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersAccount_RoleLink">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+    <End Role="UsersAccount" Type="Self.UsersAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UsersAccount">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Wallet_Believers">
+    <End Role="Believers" Type="Self.Believers" Multiplicity="0..1" />
+    <End Role="Wallet" Type="Self.Wallet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Believers">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="Wallet">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DCCModelStoreContainer">
+    <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Believers" EntityType="Self.Believers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Due" EntityType="Self.Due" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Months" EntityType="Self.Months" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersAccount" EntityType="Self.UsersAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Wallet" EntityType="Self.Wallet" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Attendance_BelieverLink" Association="Self.FK_Attendance_BelieverLink">
+      <End Role="Believers" EntitySet="Believers" />
+      <End Role="Attendance" EntitySet="Attendance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Members_Believers" Association="Self.FK_Members_Believers">
+      <End Role="Believers" EntitySet="Believers" />
+      <End Role="Members" EntitySet="Members" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Members_Dept" Association="Self.FK_Members_Dept">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Members" EntitySet="Members" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Members_Post" Association="Self.FK_Members_Post">
+      <End Role="Posts" EntitySet="Posts" />
+      <End Role="Members" EntitySet="Members" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Members_Units" Association="Self.FK_Members_Units">
+      <End Role="Unit" EntitySet="Unit" />
+      <End Role="Members" EntitySet="Members" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_Believers" Association="Self.FK_Payments_Believers">
+      <End Role="Believers" EntitySet="Believers" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_Due" Association="Self.FK_Payments_Due">
+      <End Role="Due" EntitySet="Due" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_Months" Association="Self.FK_Payments_Months">
+      <End Role="Months" EntitySet="Months" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Unit_Unit" Association="Self.FK_Unit_Unit">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Unit" EntitySet="Unit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersAccount_BelieversLink" Association="Self.FK_UsersAccount_BelieversLink">
+      <End Role="Believers" EntitySet="Believers" />
+      <End Role="UsersAccount" EntitySet="UsersAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersAccount_DeptLink" Association="Self.FK_UsersAccount_DeptLink">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="UsersAccount" EntitySet="UsersAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersAccount_RoleLink" Association="Self.FK_UsersAccount_RoleLink">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UsersAccount" EntitySet="UsersAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Wallet_Believers" Association="Self.FK_Wallet_Believers">
+      <End Role="Believers" EntitySet="Believers" />
+      <End Role="Wallet" EntitySet="Wallet" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

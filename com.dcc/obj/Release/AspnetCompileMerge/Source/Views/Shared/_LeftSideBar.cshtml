@@ -1,0 +1,158 @@
+﻿@using System.Security.Claims;
+
+@if (Request.IsAuthenticated)
+{
+    var identity = (ClaimsIdentity)User.Identity;
+    var name = identity.FindFirst(ClaimTypes.GivenName).Value;
+    var Dept = identity.FindFirst(ClaimTypes.StateOrProvince).Value;
+   
+
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="@Url.Content("~/dist/img/defaultImage.png")" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>@name</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li class="active treeview">
+                @if (User.IsInRole("Time Keeper"))
+                {
+                    <a href="@Url.Action("Index", "Attendance")">
+                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    </a>
+                }
+                else if (User.IsInRole("Finance"))
+                {
+                    <a href="@Url.Action("Index", "Finance")">
+                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    </a>
+                }
+                else 
+                {
+                    <a href="@Url.Action("Home","Account")">
+                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    </a>
+                }
+                
+            </li>
+            @if (User.IsInRole("Super Administrator"))
+            {
+                <li>
+                    <a href="@Url.Action("BelieversList", "Users")">
+                        <i class="fa fa-users"></i> <span>Believers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Members")">
+                        <i class="fa fa-user-plus"></i> <span>Workers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index","Departments")">
+                        <i class="fa fa-circle"></i> <span>Departments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index","Units")">
+                        <i class="fa fa-circle"></i> <span>Units</span>
+                    </a>
+                </li>
+            }
+            
+            @if (User.IsInRole("Administrator"))
+            {
+                <li>
+                    <a href="@Url.Action("MembersInDept", "DepartmentalUsers")">
+                        <i class="fa fa-circle"></i> <span>Members</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("UnitsInDept", "DepartmentalUsers")">
+                        <i class="fa fa-circle"></i> <span>Units</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index","Attendance")">
+                        <i class="fa fa-circle"></i> <span>Attendance</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index","Finance")">
+                        <i class="fa fa-circle"></i> <span>Financials</span>
+                    </a>
+                </li>
+            }
+            @if (User.IsInRole("Time Keeper"))
+            {
+                <li>
+                    <a href="#">
+                        <i class="fa fa-circle"></i> <span>Members</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-circle"></i> <span>Units</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="@Url.Action("Index","Attendance")">
+                        <i class="fa fa-circle"></i> <span>Attendance</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-circle"></i> <span>Financials</span>
+                    </a>
+                </li>
+            }
+            
+            @if (User.IsInRole("Finance"))
+            {
+                <li>
+                    <a href="#">
+                        <i class="fa fa-circle"></i> <span>Members</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-circle"></i> <span>Units</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class=" fa fa-circle">
+                        </i> <span>Attendance</span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-pie-chart"></i> 
+                        <span>Financials</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="@Url.Action("DuesSetUp", "Finance")"><i class="fa fa-circle-o"></i> Setup Dues</a></li>
+                        <li><a href="@Url.Action("MembersInDeptFin", "Finance")"><i class="fa fa-circle-o"></i> Dues Entry</a></li>
+                        <li><a href="@Url.Action("Expense", "Finance")"><i class="fa fa-circle-o"></i> Expenditure</a></li>
+                        <li><a href="@Url.Action("Report", "Finance")"><i class="fa fa-circle-o"></i> Reports</a></li>
+                    </ul>
+                </li>
+            }
+            
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+}

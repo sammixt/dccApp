@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0cb0f471e8bf413bb9a847588fb50ca5" Name="Diagram1">
+        <EntityTypeShape EntityType="DCCModel.State" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="DCCModel.Believer" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DCCModel.Department" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="DCCModel.Unit" Width="1.5" PointX="3" PointY="0.875" />
+        <AssociationConnector Association="DCCModel.FK_Unit_Unit" />
+        <EntityTypeShape EntityType="DCCModel.Member" Width="1.5" PointX="6.25" PointY="2.625" />
+        <AssociationConnector Association="DCCModel.FK_Members_Believers" />
+        <AssociationConnector Association="DCCModel.FK_Members_Dept" />
+        <AssociationConnector Association="DCCModel.FK_Members_Units" />
+        <EntityTypeShape EntityType="DCCModel.Post" Width="1.5" PointX="5.375" PointY="6.875" />
+        <AssociationConnector Association="DCCModel.FK_Members_Post" />
+        <EntityTypeShape EntityType="DCCModel.Role" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="DCCModel.UsersAccount" Width="1.5" PointX="9.625" PointY="3.75" />
+        <AssociationConnector Association="DCCModel.FK_UsersAccount_BelieversLink" />
+        <AssociationConnector Association="DCCModel.FK_UsersAccount_DeptLink" />
+        <AssociationConnector Association="DCCModel.FK_UsersAccount_RoleLink" />
+        <EntityTypeShape EntityType="DCCModel.Attendance" Width="1.5" PointX="3" PointY="7.25" />
+        <AssociationConnector Association="DCCModel.FK_Attendance_BelieverLink" />
+        <EntityTypeShape EntityType="DCCModel.Due" Width="1.5" PointX="3.75" PointY="15" />
+        <EntityTypeShape EntityType="DCCModel.Month" Width="1.5" PointX="3.75" PointY="18.375" />
+        <EntityTypeShape EntityType="DCCModel.Payment" Width="1.5" PointX="6" PointY="9.875" />
+        <AssociationConnector Association="DCCModel.FK_Payments_Believers" />
+        <AssociationConnector Association="DCCModel.FK_Payments_Due" />
+        <AssociationConnector Association="DCCModel.FK_Payments_Months" />
+        <EntityTypeShape EntityType="DCCModel.Wallet" Width="1.5" PointX="3" PointY="21.375" />
+        <AssociationConnector Association="DCCModel.FK_Wallet_Believers" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

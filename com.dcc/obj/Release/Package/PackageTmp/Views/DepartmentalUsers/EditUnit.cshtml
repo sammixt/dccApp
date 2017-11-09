@@ -1,0 +1,70 @@
+﻿@model com.dcc.Entities.Unit
+
+@{
+    ViewBag.Title = "Edit Unit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Edit Unit
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Edit Unit</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <a href="@Url.Action("UnitsInDept", "DepartmentalUsers")" class="btn btn-sm btn-success">Units List</a>
+                    </div>
+                    @using (Html.BeginForm("EditUnit", "DepartmentalUsers", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "loginForm", role = "form" }))
+                    {
+                        <div class="box-body">
+                            <div class="col-md-6 col-md-offset-3">
+                                @Html.HiddenFor(model => model.UnitId)
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.UnitName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.UnitName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.UnitName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.UnitFunction, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.UnitFunction, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.UnitFunction, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.UnitShortCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.UnitShortCode, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.UnitShortCode, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.DeptID)
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div class="col-md-4 col-md-offset-4">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

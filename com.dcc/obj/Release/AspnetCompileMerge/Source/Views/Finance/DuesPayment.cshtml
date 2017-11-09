@@ -1,0 +1,97 @@
+﻿@model com.dcc.Entities.Payment
+
+<div class="container">
+    <div class="col-md-12">
+        <h3 class="text-info text-bold">Make Payment</h3>
+        @using (Html.BeginForm("InsertDuesPayment", "Finance", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "InsertDuesPayment", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group col-md-6 col-md-offset-1">
+                    <label class="control-label">Payment Type</label>
+                    
+                    <select name="DuesId" id="DuesId" onchange="getAmount()" class="form-control">
+                        <option value="0"></option>
+                        @foreach (var item in ViewBag.DuesList)
+                        {
+                            <option value="@item.DuesId">@item.DuesName</option>
+                        }
+                    </select>
+
+                    @Html.HiddenFor(model => model.MemberId, new { @Value = ViewBag.MemberId })
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div id="MonthDiv" style="display:none" class="form-group col-md-6 col-md-offset-1">
+                    <label class="control-label">Select Month</label>
+
+                    <select name="Month" id="Month" class="form-control">
+                        <option value="0"></option>
+                        @foreach (var item in ViewBag.Month)
+                        {
+                            <option value="@item.MonthId">@item.Month1</option>
+                        }
+                    </select>
+                </div>
+                <div class="clearfix"></div>
+                <div id="Year" style="display:none" class="form-group col-md-6 col-md-offset-1">
+                    <label class="control-label">Payment Year</label>
+                    <select name="Year" id="Year" class="form-control">
+                        <option value="@DateTime.Now.Year">@DateTime.Now.Year</option>
+                        @for (var i = 1; i <= 10 ;i++)
+                        {
+                            <option value="@(DateTime.Now.Year -  i)">@(DateTime.Now.Year - i)</option>
+                        }
+                    </select>
+                    @*<input name="Year" onkeypress="disableText(event)" data-date-format="yyyy" type="text"  data-provide="datepicker" id="datePicker" class="form-control" />*@
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group col-md-6 col-md-offset-1">
+                    <label class="control-label">Amount</label>
+                    
+                    @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control",@type = "number" } })
+                    @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                    
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="form-group col-md-6 col-md-offset-1">
+                    <label class="control-label">Payment Date</label>
+                    <input name="PaymentDate" onkeypress="disableText(event)" data-date-format="yyyy/mm/dd" type="text" required data-provide="datepicker" id="datePicker" class="form-control" />
+                </div>
+                <div class="clearfix"></div>
+                
+
+                <div class="form-group col-md-6 col-md-offset-1">
+                    <label class="control-label">Narration</label>
+                    
+                        @Html.EditorFor(model => model.Narration, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                        @Html.ValidationMessageFor(model => model.Narration, "", new { @class = "text-danger" })
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group col-md-6 col-md-offset-1">
+                    <label class="control-label">Payment Method</label>
+
+                   <select class="form-control" name="PaymentMethod" required>
+                       <option value="0">Pay Direct</option>
+                       <option value="1">Pay From Wallet</option>
+                   </select>
+
+                </div>
+                <div class="clearfix"></div>
+               @Html.HiddenFor(m => m.TransactionType,  new { @Value = "Credit" } )
+                @Html.HiddenFor(m => m.PaymentSatus, new { @Value = "PAID" })
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" id="SubmitBtn" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+  </div>
+</div>

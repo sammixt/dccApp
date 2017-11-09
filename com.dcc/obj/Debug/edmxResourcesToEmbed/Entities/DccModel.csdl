@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DCCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DCCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="States" EntityType="DCCModel.State" />
+    <EntitySet Name="Believers" EntityType="DCCModel.Believer" />
+    <EntitySet Name="Departments" EntityType="DCCModel.Department" />
+    <EntitySet Name="Units" EntityType="DCCModel.Unit" />
+    <AssociationSet Name="FK_Unit_Unit" Association="DCCModel.FK_Unit_Unit">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Unit" EntitySet="Units" />
+    </AssociationSet>
+    <EntitySet Name="Members" EntityType="DCCModel.Member" />
+    <AssociationSet Name="FK_Members_Believers" Association="DCCModel.FK_Members_Believers">
+      <End Role="Believer" EntitySet="Believers" />
+      <End Role="Member" EntitySet="Members" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Members_Dept" Association="DCCModel.FK_Members_Dept">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Member" EntitySet="Members" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Members_Units" Association="DCCModel.FK_Members_Units">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="Member" EntitySet="Members" />
+    </AssociationSet>
+    <EntitySet Name="Posts" EntityType="DCCModel.Post" />
+    <AssociationSet Name="FK_Members_Post" Association="DCCModel.FK_Members_Post">
+      <End Role="Post" EntitySet="Posts" />
+      <End Role="Member" EntitySet="Members" />
+    </AssociationSet>
+    <EntitySet Name="Roles" EntityType="DCCModel.Role" />
+    <EntitySet Name="UsersAccounts" EntityType="DCCModel.UsersAccount" />
+    <AssociationSet Name="FK_UsersAccount_BelieversLink" Association="DCCModel.FK_UsersAccount_BelieversLink">
+      <End Role="Believer" EntitySet="Believers" />
+      <End Role="UsersAccount" EntitySet="UsersAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersAccount_DeptLink" Association="DCCModel.FK_UsersAccount_DeptLink">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="UsersAccount" EntitySet="UsersAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersAccount_RoleLink" Association="DCCModel.FK_UsersAccount_RoleLink">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UsersAccount" EntitySet="UsersAccounts" />
+    </AssociationSet>
+    <EntitySet Name="Attendances" EntityType="DCCModel.Attendance" />
+    <AssociationSet Name="FK_Attendance_BelieverLink" Association="DCCModel.FK_Attendance_BelieverLink">
+      <End Role="Believer" EntitySet="Believers" />
+      <End Role="Attendance" EntitySet="Attendances" />
+    </AssociationSet>
+    <EntitySet Name="Dues" EntityType="DCCModel.Due" />
+    <EntitySet Name="Months" EntityType="DCCModel.Month" />
+    <EntitySet Name="Payments" EntityType="DCCModel.Payment" />
+    <AssociationSet Name="FK_Payments_Believers" Association="DCCModel.FK_Payments_Believers">
+      <End Role="Believer" EntitySet="Believers" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_Due" Association="DCCModel.FK_Payments_Due">
+      <End Role="Due" EntitySet="Dues" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_Months" Association="DCCModel.FK_Payments_Months">
+      <End Role="Month" EntitySet="Months" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <EntitySet Name="Wallets" EntityType="DCCModel.Wallet" />
+    <AssociationSet Name="FK_Wallet_Believers" Association="DCCModel.FK_Wallet_Believers">
+      <End Role="Believer" EntitySet="Believers" />
+      <End Role="Wallet" EntitySet="Wallets" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Believer">
+    <Key>
+      <PropertyRef Name="MemberId" />
+    </Key>
+    <Property Name="MemberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Sex" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HomeAddressOne" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="HomeAddressTwo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="StateName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WeddingAnniversary" Type="DateTime" Precision="0" />
+    <Property Name="FacebookName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="InstagramHandle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="TwitterHandle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="AltPhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Members" Relationship="DCCModel.FK_Members_Believers" FromRole="Believer" ToRole="Member" />
+    <NavigationProperty Name="UsersAccounts" Relationship="DCCModel.FK_UsersAccount_BelieversLink" FromRole="Believer" ToRole="UsersAccount" />
+    <NavigationProperty Name="Attendances" Relationship="DCCModel.FK_Attendance_BelieverLink" FromRole="Believer" ToRole="Attendance" />
+    <NavigationProperty Name="Payments" Relationship="DCCModel.FK_Payments_Believers" FromRole="Believer" ToRole="Payment" />
+    <NavigationProperty Name="Wallets" Relationship="DCCModel.FK_Wallet_Believers" FromRole="Believer" ToRole="Wallet" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DeptId" />
+    </Key>
+    <Property Name="DeptId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeptName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="DeptDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Vision" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ShortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Units" Relationship="DCCModel.FK_Unit_Unit" FromRole="Department" ToRole="Unit" />
+    <NavigationProperty Name="Members" Relationship="DCCModel.FK_Members_Dept" FromRole="Department" ToRole="Member" />
+    <NavigationProperty Name="UsersAccounts" Relationship="DCCModel.FK_UsersAccount_DeptLink" FromRole="Department" ToRole="UsersAccount" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="UnitId" />
+    </Key>
+    <Property Name="UnitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeptID" Type="Int32" />
+    <Property Name="UnitName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="UnitFunction" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="UnitShortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Department" Relationship="DCCModel.FK_Unit_Unit" FromRole="Unit" ToRole="Department" />
+    <NavigationProperty Name="Members" Relationship="DCCModel.FK_Members_Units" FromRole="Unit" ToRole="Member" />
+  </EntityType>
+  <Association Name="FK_Unit_Unit">
+    <End Type="DCCModel.Department" Role="Department" Multiplicity="0..1" />
+    <End Type="DCCModel.Unit" Role="Unit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DeptId" />
+      </Principal>
+      <Dependent Role="Unit">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="MemberId" />
+    </Key>
+    <Property Name="MemberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BelieverId" Type="Int32" />
+    <Property Name="DeptId" Type="Int32" />
+    <Property Name="UnitId" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Groups" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProbationStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Post" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Believer" Relationship="DCCModel.FK_Members_Believers" FromRole="Member" ToRole="Believer" />
+    <NavigationProperty Name="Department" Relationship="DCCModel.FK_Members_Dept" FromRole="Member" ToRole="Department" />
+    <NavigationProperty Name="Unit" Relationship="DCCModel.FK_Members_Units" FromRole="Member" ToRole="Unit" />
+    <NavigationProperty Name="Post1" Relationship="DCCModel.FK_Members_Post" FromRole="Member" ToRole="Post" />
+  </EntityType>
+  <Association Name="FK_Members_Believers">
+    <End Type="DCCModel.Believer" Role="Believer" Multiplicity="0..1" />
+    <End Type="DCCModel.Member" Role="Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Believer">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="Member">
+        <PropertyRef Name="BelieverId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Members_Dept">
+    <End Type="DCCModel.Department" Role="Department" Multiplicity="0..1" />
+    <End Type="DCCModel.Member" Role="Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DeptId" />
+      </Principal>
+      <Dependent Role="Member">
+        <PropertyRef Name="DeptId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Members_Units">
+    <End Type="DCCModel.Unit" Role="Unit" Multiplicity="0..1" />
+    <End Type="DCCModel.Member" Role="Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="UnitId" />
+      </Principal>
+      <Dependent Role="Member">
+        <PropertyRef Name="UnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="PostId" />
+    </Key>
+    <Property Name="PostId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PostName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Members" Relationship="DCCModel.FK_Members_Post" FromRole="Post" ToRole="Member" />
+  </EntityType>
+  <Association Name="FK_Members_Post">
+    <End Type="DCCModel.Post" Role="Post" Multiplicity="0..1" />
+    <End Type="DCCModel.Member" Role="Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="PostId" />
+      </Principal>
+      <Dependent Role="Member">
+        <PropertyRef Name="Post" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="Role_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RoleType" Type="Int32" />
+    <NavigationProperty Name="UsersAccounts" Relationship="DCCModel.FK_UsersAccount_RoleLink" FromRole="Role" ToRole="UsersAccount" />
+  </EntityType>
+  <EntityType Name="UsersAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="BelieverId" Type="Int32" />
+    <Property Name="DeptId" Type="Int32" />
+    <Property Name="RoleId" Type="Int32" />
+    <Property Name="CreationDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Believer" Relationship="DCCModel.FK_UsersAccount_BelieversLink" FromRole="UsersAccount" ToRole="Believer" />
+    <NavigationProperty Name="Department" Relationship="DCCModel.FK_UsersAccount_DeptLink" FromRole="UsersAccount" ToRole="Department" />
+    <NavigationProperty Name="Role" Relationship="DCCModel.FK_UsersAccount_RoleLink" FromRole="UsersAccount" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_UsersAccount_BelieversLink">
+    <End Type="DCCModel.Believer" Role="Believer" Multiplicity="0..1" />
+    <End Type="DCCModel.UsersAccount" Role="UsersAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Believer">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="UsersAccount">
+        <PropertyRef Name="BelieverId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersAccount_DeptLink">
+    <End Type="DCCModel.Department" Role="Department" Multiplicity="0..1" />
+    <End Type="DCCModel.UsersAccount" Role="UsersAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DeptId" />
+      </Principal>
+      <Dependent Role="UsersAccount">
+        <PropertyRef Name="DeptId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersAccount_RoleLink">
+    <End Type="DCCModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="DCCModel.UsersAccount" Role="UsersAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UsersAccount">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Attendance">
+    <Key>
+      <PropertyRef Name="AttendanceId" />
+    </Key>
+    <Property Name="AttendanceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateOfDate" Type="DateTime" Precision="0" />
+    <Property Name="WorkerId" Type="Int32" />
+    <Property Name="DeptGroup" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PresentAbsent" Type="Boolean" />
+    <NavigationProperty Name="Believer" Relationship="DCCModel.FK_Attendance_BelieverLink" FromRole="Attendance" ToRole="Believer" />
+  </EntityType>
+  <Association Name="FK_Attendance_BelieverLink">
+    <End Type="DCCModel.Believer" Role="Believer" Multiplicity="0..1" />
+    <End Type="DCCModel.Attendance" Role="Attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Believer">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="Attendance">
+        <PropertyRef Name="WorkerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Due">
+    <Key>
+      <PropertyRef Name="DuesId" />
+    </Key>
+    <Property Name="DuesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DuesName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DuesDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="DuesType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Payments" Relationship="DCCModel.FK_Payments_Due" FromRole="Due" ToRole="Payment" />
+    <Property Name="DeptId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Month">
+    <Key>
+      <PropertyRef Name="MonthId" />
+    </Key>
+    <Property Name="MonthId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Month1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Payments" Relationship="DCCModel.FK_Payments_Months" FromRole="Month" ToRole="Payment" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PaymentId" />
+    </Key>
+    <Property Name="PaymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DuesId" Type="Int32" />
+    <Property Name="MemberId" Type="Int32" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="Year" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="0" />
+    <Property Name="EntryDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Believer" Relationship="DCCModel.FK_Payments_Believers" FromRole="Payment" ToRole="Believer" />
+    <NavigationProperty Name="Due" Relationship="DCCModel.FK_Payments_Due" FromRole="Payment" ToRole="Due" />
+    <NavigationProperty Name="Month1" Relationship="DCCModel.FK_Payments_Months" FromRole="Payment" ToRole="Month" />
+    <Property Name="ExpenseBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Narration" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="AuthorizedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DeptId" Type="Int32" />
+    <Property Name="PaymentSatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Payments_Believers">
+    <End Type="DCCModel.Believer" Role="Believer" Multiplicity="0..1" />
+    <End Type="DCCModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Believer">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payments_Due">
+    <End Type="DCCModel.Due" Role="Due" Multiplicity="0..1" />
+    <End Type="DCCModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Due">
+        <PropertyRef Name="DuesId" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="DuesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payments_Months">
+    <End Type="DCCModel.Month" Role="Month" Multiplicity="0..1" />
+    <End Type="DCCModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Month">
+        <PropertyRef Name="MonthId" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="Month" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Wallet">
+    <Key>
+      <PropertyRef Name="WalletId" />
+    </Key>
+    <Property Name="WalletId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberId" Type="Int32" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Believer" Relationship="DCCModel.FK_Wallet_Believers" FromRole="Wallet" ToRole="Believer" />
+    <Property Name="DeptId" Type="Int32" />
+  </EntityType>
+  <Association Name="FK_Wallet_Believers">
+    <End Type="DCCModel.Believer" Role="Believer" Multiplicity="0..1" />
+    <End Type="DCCModel.Wallet" Role="Wallet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Believer">
+        <PropertyRef Name="MemberId" />
+      </Principal>
+      <Dependent Role="Wallet">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

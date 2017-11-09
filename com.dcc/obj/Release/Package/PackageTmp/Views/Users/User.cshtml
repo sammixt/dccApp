@@ -1,0 +1,207 @@
+﻿@model com.dcc.Entities.Believer
+@{
+    ViewBag.Title = "User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<SelectListItem> MaritalStat = new List<SelectListItem>();
+    List<SelectListItem> Gender = new List<SelectListItem>();
+    MaritalStat.Add(new SelectListItem { Text = "Single", Value = "Single" });
+    MaritalStat.Add(new SelectListItem { Text = "Married", Value = "Married" });
+    MaritalStat.Add(new SelectListItem { Text = "Divorced", Value = "Divorced" });
+    MaritalStat.Add(new SelectListItem { Text = "Widowed", Value = "Widowed" });
+    Gender.Add(new SelectListItem { Text = "Male", Value = "Male" });
+    Gender.Add(new SelectListItem { Text = "Female", Value = "Female" });
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Add New Believer
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Add Believer</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        @Html.ActionLink("Back to List", "BelieversList")
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+@using (Html.BeginForm("User", "Users", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "loginForm", role = "form" }))
+{
+    <div class="box-body">
+       
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group col-md-4">
+                <div class="col-md-12">
+                    <label class="control-label">First name</label>
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control",@required="required" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <div class="col-md-12">
+                    <label class="control-label">Last name</label>
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <div class="col-md-12">
+                    <label class="control-label">Sex</label>
+                    @Html.DropDownListFor(model => model.Sex, Gender, new { @class = "form-control", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group col-md-4">
+                <div class="col-md-12">
+                    <label class="control-label">Date of Birth</label>
+                    @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control",id="DOB",@required="required" } })
+                    @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <div class="col-md-12">
+                    <label class="control-label">Phone Number</label>
+                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                <div class="col-md-12">
+                    <label class="control-label">Home Address One</label>
+                    @Html.EditorFor(model => model.HomeAddressOne, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.HomeAddressOne, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group col-md-4">
+                <div class="col-md-12">
+                    <label class="control-label">Home Address Two</label>
+                    @Html.EditorFor(model => model.HomeAddressTwo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.HomeAddressTwo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                <div class="col-md-12">
+                    <label class="control-label">City</label>
+                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <div class="col-md-12">
+                    <label class="control-label">State</label>
+                    <select name="StateName" required class="form-control">
+                        @foreach (var item in ViewBag.State)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.StateName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group col-md-4">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control",@required="required" } })
+                    @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                <div class="col-md-12">
+                    <label class="control-label">Marital Status</label>
+                    @Html.DropDownListFor(model => model.MaritalStatus, MaritalStat, new { @class = "form-control", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.MaritalStatus, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                <div class="col-md-12">
+                    <label class="control-label">Wedding Annivarsary</label>
+                    @Html.EditorFor(model => model.WeddingAnniversary, new { htmlAttributes = new { @class = "form-control", id = "WedAnn" } })
+                    @Html.ValidationMessageFor(model => model.WeddingAnniversary, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group col-md-4">
+                <div class="col-md-12">
+                    <label class="control-label">Facebook Name</label>
+                    @Html.EditorFor(model => model.FacebookName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FacebookName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.InstagramHandle, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.InstagramHandle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.InstagramHandle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                <div class="col-md-12">
+                    <label class="control-label">Twitter Handle</label>
+                    @Html.EditorFor(model => model.TwitterHandle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TwitterHandle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group col-md-4">
+                <div class="col-md-12">
+                    <label class="control-label">Alternate Phone Number</label>
+                    @Html.EditorFor(model => model.AltPhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AltPhoneNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="clearfix"></div>
+       
+
+
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+}
+                
+            </div>
+        </div>
+    </div>
+    </section>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#DOB').datepicker();
+            $('#WedAnn').datepicker();
+
+            $('input#DOB[name="DateOfBirth"]').keypress(function (e) {
+                e.preventDefault();
+            });
+
+            $('input#WedAnn[name="WeddingAnniversary"]').keypress(function (e) {
+                e.preventDefault();
+            });
+
+        })
+    </script>
+    }
+

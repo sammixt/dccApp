@@ -1,0 +1,92 @@
+﻿@model IEnumerable<com.dcc.Entities.Payment>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-danger">
+                <div class="box-header">
+                    <h3 class="box-title">Financial Transaction Report from @ViewBag.StartDate to @ViewBag.EndDate</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="table"  class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>S/N</th>
+                                        <th>
+                                            Description
+                                        </th>
+                                        <th>
+                                            Member Name
+                                        </th>
+                                        <th>
+                                            Dues Type
+                                        </th>
+                                        <th>
+                                            Amount
+                                        </th>
+                                        <th>
+                                            Date
+                                        </th>
+                                        <th>
+                                            Transaction Type
+                                        </th>
+                                        <th>
+                                            Spent By
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.First() != null)
+                                    {
+                                        int count = 1;
+                                        foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@count</td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Narration)  
+                                                </td>
+                                                <td>
+                                                    @if (item.MemberId != null)
+                                                    { <span>@item.Believer.FirstName  @item.Believer.LastName</span>}
+                                                    
+                                                    else
+                                                    { <span></span> }
+                                                </td>
+                                                <td>
+                                                    @if (item.DuesId != null) { @item.Due.DuesName;
+                                                    }
+                                                    else
+                                                    { <span></span> }
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Amount) 
+                                                </td>
+                                                <td>
+                                                    @item.PaymentDate.Value.ToShortDateString()
+                                                </td>
+                                                <td>
+                                                    @item.TransactionType
+                                                </td>
+                                                <td>
+                                                   @item.ExpenseBy
+                                                </td>
+                                            </tr>
+                                            count++;
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

@@ -1,0 +1,71 @@
+﻿@model com.dcc.ViewModel.DuesReportViewModel
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-danger">
+                <div class="box-header">
+                    <h3 class="box-title">Dues Payment from @Model._MONTHS.First().Month1 to @Model._MONTHS.Last().Month1</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="table" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        @if (Model != null)
+                                        {
+                                            <th>S/N</th>
+                                            foreach (var item in Model._MONTHS)
+                                            {
+                                                <th>@item.Month1</th>
+                                            }
+                                        }
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model != null && Model._PAYMENTS.Count() > 0)
+                                    {
+                                        foreach (var name in Model._MEMBERS)
+                                        {
+                                            <tr>
+                                                <td>@name.Believer.FirstName @name.Believer.LastName</td>
+                                                @foreach (var item in Model._MONTHS)
+                                                {
+                                                    var paystat = Model._PAYMENTS.Where(m => m.MemberId == name.BelieverId && m.Month == item.MonthId).FirstOrDefault();
+                                                    if (paystat != null)
+                                                    {
+                                                        <td>
+                                                            @if (paystat.PaymentSatus == "PAID")
+                                                            {
+                                                                <span style="color:green">@paystat.PaymentSatus</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span style="color:red">@paystat.PaymentSatus</span>
+                                                            }
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>&nbsp;</td>
+                                                    }
+                                                }
+
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
